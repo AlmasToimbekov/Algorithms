@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MaxSubarray {
     public static void main(String[] args) {
         int size = 5000000;
@@ -12,20 +14,21 @@ public class MaxSubarray {
 //        array[25030] = -10;
 //        array[25400] = -350;
         int[] array = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
-        System.out.println(new MaxSubarray().findMaxSubarray(array, 0, array.length));
+        int[] result = new MaxSubarray().findMaxSubarray(array, 0, array.length);
+        System.out.println(Arrays.toString(result));
     }
 
-    private int findMaxSubarray(int[] array, int low, int high) {
+    private int[] findMaxSubarray(int[] array, int low, int high) {
         if (high - low == 1) {
-            return array[low];
+            return new int[]{low, high, array[low]};
         } else {
             int mid = (low + high) / 2;
-            int leftSum = findMaxSubarray(array, low, mid);
-            int rightSum = findMaxSubarray(array, mid, high);
-            int crossingSum = findMaxCrossingSubarray(array, low, mid, high);
-            if (leftSum >= rightSum && leftSum >= crossingSum) {
+            int[] leftSum = findMaxSubarray(array, low, mid);
+            int[] rightSum = findMaxSubarray(array, mid, high);
+            int[] crossingSum = findMaxCrossingSubarray(array, low, mid, high);
+            if (leftSum[2] >= rightSum[2] && leftSum[2] >= crossingSum[2]) {
                 return leftSum;
-            } else if (rightSum >= leftSum && rightSum >= crossingSum) {
+            } else if (rightSum[2] >= leftSum[2] && rightSum[2] >= crossingSum[2]) {
                 return rightSum;
             } else {
                 return crossingSum;
@@ -33,11 +36,8 @@ public class MaxSubarray {
         }
     }
 
-    private int findMaxCrossingSubarray(int[] array, int low, int mid, int high) {
-        int maxLeft = low;
-        int maxRight = high;
-        int leftSum = Integer.MIN_VALUE;
-        int sum = 0;
+    private int[] findMaxCrossingSubarray(int[] array, int low, int mid, int high) {
+        int maxLeft = low, maxRight = high, leftSum = Integer.MIN_VALUE, rightSum = leftSum, sum = 0;
         for (int i = mid - 1; i >= low; i--) {
             sum += array[i];
             if (sum > leftSum) {
@@ -45,15 +45,14 @@ public class MaxSubarray {
                 maxLeft = i;
             }
         }
-        int rightSum = Integer.MIN_VALUE;
         sum = 0;
         for (int j = mid; j < high; j++) {
-            sum = sum + array[j];
+            sum += array[j];
             if (sum > rightSum) {
                 rightSum = sum;
-                maxRight = j;
+                maxRight = j + 1;
             }
         }
-        return leftSum + rightSum;
+        return new int[]{maxLeft, maxRight, leftSum + rightSum};
     }
 }
