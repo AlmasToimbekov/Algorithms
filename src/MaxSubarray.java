@@ -34,6 +34,23 @@ public class MaxSubarray {
                 return crossingSum;
             }
         }
+
+//        Same with O(n)
+//        int left = 0, right = 0, sum = Integer.MIN_VALUE, sumMax = Integer.MIN_VALUE;
+//        for (int i = 0; i < array.length; i++) {
+//            if (sum < 0) {
+//                sum = array[i];
+//                left = i;
+//            } else {
+//                sum += array[i];
+//            }
+//
+//            if (sum > sumMax) {
+//                sumMax = sum;
+//                right = i + 1;
+//            }
+//        }
+//        return new int[] {sumMax, left, right};
     }
 
     private int[] findMaxCrossingSubarray(int[] array, int low, int mid, int high) {
