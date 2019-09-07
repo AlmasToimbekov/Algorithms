@@ -1,20 +1,6 @@
-import java.util.Arrays;
+package sort;
 
 public class SelectionSort {
-    public static void main(String[] args) {
-        long timeBegin = System.nanoTime();
-        int size = 5000000;
-        int[] array = new int[size];
-        for (int i = 0; i < size; i++) {
-            array[i] = (int)(Math.random() * size);
-        }
-
-        long timeEnd = System.nanoTime();
-//        System.out.println(Arrays.toString(SelectionSort.selectionSort(array)));
-        System.out.println(timeEnd - timeBegin);
-
-    }
-
     public static int[] selectionSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             int currentValue = array[i];

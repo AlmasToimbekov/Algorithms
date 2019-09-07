@@ -1,9 +1,7 @@
+package search;
+
 public class SearchingProblem {
-    public static void main(String[] args) {
-        int[] array = {2, 3, 5, 8, 12, 15, 19, 23};
-        System.out.println(new SearchingProblem().search(array, 15));
-    }
-    protected int search(int[] array, int value) {
+    public static int search(int[] array, int value) {
         int start = 0;
         int end = array.length;
         while (end - start > 0) {

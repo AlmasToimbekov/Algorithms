@@ -1,16 +1,13 @@
 public class Fibonacci {
-    public static void main(String[] args) {
-        System.out.println(effectiveMethod(10));
-    }
 //1, 1, 2, 3, 5
-    private static long recursiveBadMethod(long n) {
+    static long recursiveBadMethod(long n) {
         if (n <= 1) {
             return n;
         }
         return recursiveBadMethod(n - 1) + recursiveBadMethod(n - 2);
     }
 
-    private static long improvedMethod(long n) {
+    static long improvedMethod(long n) {
         n = n - 1;
         long previous = 0;
         long current;
@@ -24,7 +21,7 @@ public class Fibonacci {
         return fibonacci;
     }
 
-    private static double effectiveMethod(int num) {
+    static double effectiveMethod(int num) {
         double x1 = (1 + Math.sqrt(5)) / 2;
         double x2 = (1 - Math.sqrt(5)) / 2;
         double up = Math.pow(x1, num) - Math.pow(x2, num);

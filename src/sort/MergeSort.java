@@ -1,33 +1,9 @@
+package sort;
+
 import java.util.Arrays;
 
 public class MergeSort {
-    public static void main(String[] args) {
-//        long[] count = new long[10];
-//        for (int j = 0; j < 10; j++) {
-//            int size = 5000000;
-//            int[] array = new int[size];
-//            for (int i = 0; i < size; i++) {
-//                int sign = (int)(Math.random() * 2) == 1 ? -1 : 1;
-//                array[i] = (int)(Math.random() * size) * sign;
-//            }
-////        array[2000] = -100;
-////        array[2500] = -150;
-////        array[25020] = -1500;
-////        array[25030] = -10;
-////        array[25400] = -350;
-        int[] array = {13, -3, -5, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
-//            long timeBegin = System.nanoTime();
-        new MergeSort().mergeSort(array);
-//            long timeEnd = System.nanoTime();
-//            count[j] = timeEnd - timeBegin;
-//        }
-//        for (long k: count) {
-//            System.out.println(k);
-//        }
-        System.out.println(Arrays.toString(array));
-    }
-
-    public void mergeSort(int[] array) {
+    public static void mergeSort(int[] array) {
         int len = array.length;
         if (len < 2) {
             return;
@@ -42,7 +18,7 @@ public class MergeSort {
         merge(leftArr, rightArr, array);
     }
 
-    public void merge(int[] leftArr, int[] rightArr, int[] resultList) {
+    public static void merge(int[] leftArr, int[] rightArr, int[] resultList) {
         int positionA = 0, positionB = 0, resultIndex = 0;
 
 //        The first way
