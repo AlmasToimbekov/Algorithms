@@ -1,7 +1,5 @@
 package sort;
 
-import java.util.Arrays;
-
 public class InsertionSort {
     public static int[] insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
@@ -42,29 +40,21 @@ public class InsertionSort {
         return array;
     }
 
-//        Same with recursion
-    public static int[] insertionRecursionSort(int[] array) {
-        if (array.length == 1) {
-            return array;
-        }
-        int mid = array.length / 2;
-        int[] arrayToSort = insertionRecursionSort(Arrays.copyOfRange(array, 0, mid));
-        int[] arrayToSort2 = insertionRecursionSort(Arrays.copyOfRange(array, mid, array.length));
+    public static void insertionSortRecursive(int arr[], int n)
+    {
+        if (n <= 1)
+            return;
 
-        int left = 0;
-        int right = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (left == arrayToSort.length) {
-                array[i] = arrayToSort2[right];
-            } else if (right == arrayToSort2.length) {
-                array[i] = arrayToSort[left];
-            } else if (arrayToSort[left] < arrayToSort2[right]) {
-                array[i] = arrayToSort[left++];
-            } else {
-                array[i] = arrayToSort2[right++];
-            }
+        insertionSortRecursive(arr, n - 1);
+
+        int last = arr[n - 1];
+        int j = n - 2;
+
+        while (j >= 0 && arr[j] > last) {
+            arr[j + 1] = arr[j];
+            j--;
         }
-        return array;
+        arr[j + 1] = last;
     }
 }
     /*same in JS
